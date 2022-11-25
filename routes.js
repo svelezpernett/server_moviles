@@ -8,7 +8,7 @@ const router = express.Router();
 router.post ("/vendedor",[
                 check("idvend","es obligatorio el numero").not(),
                 check("nombre","el nombre es obligatorio").matches(/^[a-zA-Z]+$/),
-                check("apellido","el apellido es obligatorio").not().isEmpty(),
+                check("apellido","el apellido es obligatorio").matches(/^[a-zA-Z]+$/),
                 check('correoe','el correo no es valido').isEmail()
             ],
             ValidarCampos,
