@@ -18,9 +18,9 @@ router.get("/vendedor",controller.getVendedor)
 
 router.post("/venta",[
         check("idvend","el idvend es obligatorio"),
-        check("zona","la zona es obligatorio"),
-        check("fecha","fecha es obliogatorio"),
-        check("valorventa","valorventa es obligatorio")
+        check("zona","la zona es obligatorio").matches(/^[a-zA-Z]+$/),
+        check("fecha","fecha es obliogatorio").isDate(),
+        check("valorventa","valorventa es obligatorio").not().isEmpty()
 ],
 ValidarCampos
  ,controller.postVenta)
