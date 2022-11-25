@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post ("/vendedor",[
                 check("idvend","es obligatorio el numero").not(),
-                check("nombre","el nombre es obligatorio").not().isEmpty(),
+                check("nombre","el nombre es obligatorio").matches(/^[a-zA-Z]+$/),
                 check("apellido","el apellido es obligatorio").not().isEmpty(),
                 check('correoe','el correo no es valido').isEmail(),
             ],
@@ -18,9 +18,9 @@ router.get("/vendedor",controller.getVendedor)
 
 router.post("/venta",[
         check("idvend","el idvend es obligatorio"),
-        check("zona","la zona es obligatorio"),
-        check("fecha","fecha es obliogatorio"),
-        check("valorventa","valorventa es obligatorio")
+        check("zona","la zona es obligatorio").not().isEmpty(),
+        check("fecha","fecha es obliogatorio").isDate(),
+        check("valorventa","valorventa es obligatorio").not().isEmpty()
 ],
 ValidarCampos
  ,controller.postVenta)
